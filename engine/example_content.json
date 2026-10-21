@@ -1,0 +1,291 @@
+{
+  "aspects": [
+    {
+      "id": "funds",
+      "label": "资金"
+    },
+    {
+      "id": "health",
+      "label": "健康"
+    },
+    {
+      "id": "reason",
+      "label": "理性"
+    },
+    {
+      "id": "lantern",
+      "label": "灯"
+    },
+    {
+      "id": "dread",
+      "label": "躁动"
+    }
+  ],
+  "cards": [
+    {
+      "id": "funds",
+      "label": "资金",
+      "aspects": {
+        "funds": 1
+      }
+    },
+    {
+      "id": "health",
+      "label": "健康",
+      "aspects": {
+        "health": 1
+      },
+      "unique": true,
+      "stackable": false
+    },
+    {
+      "id": "reason",
+      "label": "理性",
+      "aspects": {
+        "reason": 1
+      },
+      "unique": true,
+      "stackable": false
+    },
+    {
+      "id": "dread",
+      "label": "躁动",
+      "aspects": {
+        "dread": 1
+      }
+    },
+    {
+      "id": "glimmer",
+      "label": "灵感",
+      "aspects": {
+        "lantern": 1
+      },
+      "lifetime": 2
+    },
+    {
+      "id": "lore_frag",
+      "label": "密传残篇",
+      "aspects": {
+        "lantern": 2
+      }
+    }
+  ],
+  "verbs": [
+    {
+      "id": "work",
+      "label": "工作"
+    },
+    {
+      "id": "dream",
+      "label": "入梦"
+    },
+    {
+      "id": "study",
+      "label": "研究"
+    },
+    {
+      "id": "time",
+      "label": "时间流逝",
+      "default_recipe": "tick",
+      "auto": true,
+      "spawn_condition": {
+        "type": "every_n_turns",
+        "n": 1
+      },
+      "lifetime": 1
+    }
+  ],
+  "decks": [
+    {
+      "id": "mansus",
+      "cards": {
+        "glimmer": 2,
+        "lore_frag": 1,
+        "dread": 2
+      },
+      "reset_on_empty": true
+    }
+  ],
+  "recipes": [
+    {
+      "id": "tick",
+      "label": "时间流逝",
+      "verb": "time",
+      "warmup": 0,
+      "slots": [
+        {
+          "id": "cost",
+          "label": "花销",
+          "required": {
+            "funds": 1
+          },
+          "greedy": true
+        }
+      ],
+      "linked": [
+        "tick_paid",
+        "tick_starve"
+      ],
+      "start_text": "又一日过去。"
+    },
+    {
+      "id": "tick_paid",
+      "label": "维持生计",
+      "verb": "time",
+      "requirements": {
+        "funds": 1
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "consume_aspect",
+          "aspect": "funds",
+          "count": 1
+        }
+      ],
+      "end_text": "金钱换来了又一天的安宁。",
+      "craftable": false
+    },
+    {
+      "id": "tick_starve",
+      "label": "无以为继",
+      "verb": "time",
+      "requirements": {
+        "funds": -1
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "dread",
+          "count": 1
+        }
+      ],
+      "end_text": "钱袋空了。不安在滋长。",
+      "craftable": false
+    },
+    {
+      "id": "work_job",
+      "label": "卖力气",
+      "verb": "work",
+      "requirements": {
+        "health": 1
+      },
+      "warmup": 1,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "funds",
+          "count": 2
+        }
+      ],
+      "alternatives": [
+        {
+          "recipe": "work_injury",
+          "chance": 10
+        }
+      ],
+      "start_text": "汗水换金钱。",
+      "end_text": "一天的劳作结束了。"
+    },
+    {
+      "id": "work_injury",
+      "label": "工伤",
+      "verb": "work",
+      "requirements": {},
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "funds",
+          "count": 1
+        },
+        {
+          "op": "spawn",
+          "card": "dread",
+          "count": 1
+        }
+      ],
+      "end_text": "你受了伤，工钱也少了。",
+      "craftable": false
+    },
+    {
+      "id": "dream_reason",
+      "label": "沉眠",
+      "verb": "dream",
+      "requirements": {
+        "reason": 1
+      },
+      "warmup": 1,
+      "effects": [
+        {
+          "op": "draw",
+          "deck": "mansus",
+          "times": 1
+        }
+      ],
+      "start_text": "你沉入睡眠。",
+      "end_text": "梦留下了些什么。"
+    },
+    {
+      "id": "despair",
+      "label": "崩溃",
+      "verb": "dream",
+      "requirements": {
+        "dread": 3
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "ending",
+          "id": "madness"
+        }
+      ],
+      "start_text": "躁动淹没了你。"
+    },
+    {
+      "id": "study_frag",
+      "label": "解读残篇",
+      "verb": "study",
+      "requirements": {
+        "lore_frag": 1
+      },
+      "warmup": 0,
+      "slots": [
+        {
+          "id": "price",
+          "label": "代价",
+          "required": {
+            "health": 1
+          },
+          "essential": true
+        }
+      ],
+      "effects": [
+        {
+          "op": "consume_aspect",
+          "aspect": "health",
+          "count": 1
+        },
+        {
+          "op": "spawn",
+          "card": "glimmer",
+          "count": 1
+        }
+      ],
+      "start_text": "残篇上的文字蠕动着。要付出健康来读懂它吗？",
+      "end_text": "你读懂了。代价值得。"
+    }
+  ],
+  "endings": [
+    {
+      "id": "madness",
+      "label": "入迷",
+      "text": "你的理智被漫宿吞没。",
+      "cg": "cg/madness.png",
+      "legacy_spawn": {
+        "dread": 1
+      }
+    }
+  ]
+}

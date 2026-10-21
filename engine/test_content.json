@@ -1,0 +1,741 @@
+{
+  "start_spawn": {
+    "funds": 3,
+    "health": 1,
+    "reason": 1,
+    "passion": 1,
+    "old_map": 1,
+    "herb": 1
+  },
+  "aspects": [
+    {
+      "id": "funds",
+      "label": "资金",
+      "description": "世俗的货币。时间流逝每回合都会吞噬它。"
+    },
+    {
+      "id": "health",
+      "label": "健康",
+      "description": "血肉之躯的容量。劳作与献祭都要消耗它。"
+    },
+    {
+      "id": "reason",
+      "label": "理性",
+      "description": "清明的心智。入梦的船票。"
+    },
+    {
+      "id": "passion",
+      "label": "激情",
+      "description": "炽热的冲动。可以换钱，也可以点香。"
+    },
+    {
+      "id": "lantern",
+      "label": "灯",
+      "description": "揭示之光。密传的第一性。"
+    },
+    {
+      "id": "moth",
+      "label": "蛾",
+      "description": "蜕变与荒野。混沌的第一性。"
+    },
+    {
+      "id": "worth",
+      "label": "价值",
+      "description": "可以拿去市集换钱的东西。"
+    },
+    {
+      "id": "dread",
+      "label": "躁动",
+      "description": "积攒三份，入梦即死。"
+    },
+    {
+      "id": "taint",
+      "label": "蚀痕",
+      "description": "不可名状的污染。纯洁的仪式拒绝它。",
+      "hidden": true
+    }
+  ],
+  "cards": [
+    {
+      "id": "funds",
+      "label": "资金",
+      "aspects": {
+        "funds": 1
+      },
+      "description": "叮当作响的世俗保障。"
+    },
+    {
+      "id": "health",
+      "label": "健康",
+      "aspects": {
+        "health": 1
+      },
+      "unique": true,
+      "stackable": false,
+      "description": "你只有这一副身体。"
+    },
+    {
+      "id": "reason",
+      "label": "理性",
+      "aspects": {
+        "reason": 1
+      },
+      "unique": true,
+      "stackable": false
+    },
+    {
+      "id": "passion",
+      "label": "激情",
+      "aspects": {
+        "passion": 1
+      },
+      "unique": true,
+      "stackable": false
+    },
+    {
+      "id": "herb",
+      "label": "鲜药草",
+      "aspects": {
+        "health": 1
+      },
+      "lifetime": 2,
+      "decay_to": "dry_herb",
+      "description": "带着露水。放两回合会变成干药草。"
+    },
+    {
+      "id": "dry_herb",
+      "label": "干药草",
+      "aspects": {
+        "health": 1,
+        "moth": 1
+      },
+      "lifetime": 3,
+      "decay_to": "dregs",
+      "description": "可以研成药膏。再放三回合就成渣了。"
+    },
+    {
+      "id": "dregs",
+      "label": "药渣",
+      "aspects": {},
+      "description": "朽坏之物。毫无用处，只配丢掉。"
+    },
+    {
+      "id": "salve",
+      "label": "药膏",
+      "aspects": {
+        "health": 2
+      },
+      "lifetime": 3,
+      "decay_to": "dregs",
+      "description": "两单位健康的浓缩。放久了照样坏。"
+    },
+    {
+      "id": "glimmer",
+      "label": "灵感",
+      "aspects": {
+        "lantern": 1
+      },
+      "lifetime": 2,
+      "description": "转瞬即逝的微光，两回合后消散。"
+    },
+    {
+      "id": "insight",
+      "label": "秘识",
+      "aspects": {
+        "lantern": 2
+      },
+      "description": "不会消散的洞见。登临洞明需要两份。"
+    },
+    {
+      "id": "old_map",
+      "label": "旧址地图",
+      "aspects": {
+        "moth": 1
+      },
+      "description": "标记着城外废墟的位置。"
+    },
+    {
+      "id": "ancient_coin",
+      "label": "古币",
+      "aspects": {
+        "worth": 2,
+        "moth": 1
+      },
+      "description": "前朝的钱。市集上有人收。"
+    },
+    {
+      "id": "toadstool",
+      "label": "毒蕈",
+      "aspects": {
+        "moth": 1,
+        "taint": 1
+      },
+      "description": "鲜艳的菌盖。纯洁的仪式拒绝它。"
+    },
+    {
+      "id": "grimoire",
+      "label": "邪典",
+      "aspects": {
+        "lantern": 2,
+        "taint": 1
+      },
+      "unique": true,
+      "stackable": false,
+      "description": "封面在呼吸。它的出现会召来仪式之槽。"
+    },
+    {
+      "id": "ecstasy",
+      "label": "狂喜",
+      "aspects": {
+        "lantern": 1,
+        "moth": 1
+      },
+      "description": "灵感燃尽后的余烬，明亮而混沌。"
+    },
+    {
+      "id": "dread",
+      "label": "躁动",
+      "aspects": {
+        "dread": 1
+      },
+      "description": "不安在滋长。三份同带入梦即是末路。"
+    }
+  ],
+  "verbs": [
+    {
+      "id": "work",
+      "label": "工作"
+    },
+    {
+      "id": "study",
+      "label": "研究"
+    },
+    {
+      "id": "dream",
+      "label": "入梦"
+    },
+    {
+      "id": "explore",
+      "label": "探索",
+      "grid_w": 3,
+      "grid_h": 2,
+      "default_recipe": "explore_blind"
+    },
+    {
+      "id": "ritual",
+      "label": "仪式",
+      "spawn_condition": {
+        "type": "has_card",
+        "card": "grimoire"
+      }
+    },
+    {
+      "id": "market",
+      "label": "市集",
+      "spawn_condition": {
+        "type": "on_turn",
+        "turn": 3
+      },
+      "lifetime": 2
+    },
+    {
+      "id": "time",
+      "label": "时间流逝",
+      "default_recipe": "tick",
+      "auto": true,
+      "spawn_condition": {
+        "type": "every_n_turns",
+        "n": 1
+      },
+      "lifetime": 1
+    },
+    {
+      "id": "season",
+      "label": "季相",
+      "default_recipe": "season_tick",
+      "auto": true,
+      "spawn_condition": {
+        "type": "every_n_turns",
+        "n": 5
+      },
+      "lifetime": 1
+    }
+  ],
+  "decks": [
+    {
+      "id": "mansus",
+      "cards": {
+        "glimmer": 2,
+        "dread": 2,
+        "insight": 1
+      },
+      "reset_on_empty": true
+    },
+    {
+      "id": "omens",
+      "cards": {
+        "glimmer": 1,
+        "dread": 1,
+        "herb": 1
+      },
+      "reset_on_empty": true
+    },
+    {
+      "id": "expedition",
+      "cards": {
+        "ancient_coin": 1,
+        "toadstool": 1,
+        "grimoire": 1,
+        "herb": 1
+      },
+      "reset_on_empty": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "tick",
+      "label": "时间流逝",
+      "verb": "time",
+      "warmup": 0,
+      "slots": [
+        {
+          "id": "cost",
+          "label": "花销",
+          "required": {
+            "funds": 1
+          },
+          "greedy": true,
+          "forbidden": {}
+        }
+      ],
+      "linked": [
+        "tick_paid",
+        "tick_starve"
+      ],
+      "start_text": "又一日过去。",
+      "requirements": {}
+    },
+    {
+      "id": "tick_paid",
+      "label": "维持生计",
+      "verb": "time",
+      "craftable": false,
+      "requirements": {
+        "funds": 1
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "consume_aspect",
+          "aspect": "funds",
+          "count": 1
+        }
+      ],
+      "end_text": "金钱换来了又一天的安宁。"
+    },
+    {
+      "id": "tick_starve",
+      "label": "无以为继",
+      "verb": "time",
+      "craftable": false,
+      "requirements": {
+        "funds": -1
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "dread",
+          "count": 1
+        }
+      ],
+      "end_text": "钱袋空了。不安在滋长。"
+    },
+    {
+      "id": "season_tick",
+      "label": "季相流转",
+      "verb": "season",
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "draw",
+          "deck": "omens",
+          "times": 1
+        }
+      ],
+      "start_text": "季相变了。",
+      "end_text": "某种征兆落进了你的口袋。",
+      "requirements": {}
+    },
+    {
+      "id": "work_hard",
+      "label": "拼命劳作",
+      "verb": "work",
+      "requirements": {
+        "health": 1,
+        "passion": 1
+      },
+      "warmup": 2,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "funds",
+          "count": 4
+        }
+      ],
+      "start_text": "汗与火一起烧。两个回合。",
+      "end_text": "你赚到了双倍的钱，和双倍的疲惫。"
+    },
+    {
+      "id": "work_job",
+      "label": "卖力气",
+      "verb": "work",
+      "requirements": {
+        "health": 1
+      },
+      "warmup": 1,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "funds",
+          "count": 2
+        }
+      ],
+      "alternatives": [
+        {
+          "recipe": "work_injury",
+          "chance": 15
+        }
+      ],
+      "start_text": "汗水换金钱。",
+      "end_text": "一天的劳作结束了。"
+    },
+    {
+      "id": "work_injury",
+      "label": "工伤",
+      "verb": "work",
+      "craftable": false,
+      "requirements": {},
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "funds",
+          "count": 1
+        },
+        {
+          "op": "spawn",
+          "card": "dread",
+          "count": 1
+        }
+      ],
+      "end_text": "你受了伤，工钱也少了。"
+    },
+    {
+      "id": "study_grimoire",
+      "label": "研读邪典",
+      "verb": "study",
+      "requirements": {
+        "card:grimoire": 1
+      },
+      "warmup": 0,
+      "slots": [
+        {
+          "id": "price",
+          "label": "代价",
+          "required": {
+            "health": 1
+          },
+          "essential": true,
+          "forbidden": {}
+        }
+      ],
+      "effects": [
+        {
+          "op": "consume_aspect",
+          "aspect": "health",
+          "count": 1
+        }
+      ],
+      "linked": [
+        "grimoire_revelation"
+      ],
+      "start_text": "书页上的文字蠕动着。要付出健康来读懂它吗？"
+    },
+    {
+      "id": "grimoire_revelation",
+      "label": "蚀痕的启示",
+      "verb": "study",
+      "craftable": false,
+      "requirements": {
+        "taint": 1
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "insight",
+          "count": 1
+        }
+      ],
+      "end_text": "蚀痕灼烧着你，但你看懂了。一份秘识。"
+    },
+    {
+      "id": "study_poultice",
+      "label": "研配药膏",
+      "verb": "study",
+      "requirements": {
+        "card:dry_herb": 1
+      },
+      "warmup": 1,
+      "effects": [
+        {
+          "op": "consume_main"
+        },
+        {
+          "op": "spawn",
+          "card": "salve",
+          "count": 1
+        }
+      ],
+      "start_text": "捣碎、熬煮、收膏。",
+      "end_text": "一罐药膏成了。"
+    },
+    {
+      "id": "dream_reason",
+      "label": "沉眠",
+      "verb": "dream",
+      "requirements": {
+        "reason": 1
+      },
+      "warmup": 1,
+      "effects": [
+        {
+          "op": "draw",
+          "deck": "mansus",
+          "times": 1
+        }
+      ],
+      "start_text": "你沉入睡眠。",
+      "end_text": "梦留下了些什么。"
+    },
+    {
+      "id": "despair",
+      "label": "崩溃",
+      "verb": "dream",
+      "requirements": {
+        "dread": 3
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "ending",
+          "id": "madness"
+        }
+      ],
+      "start_text": "躁动淹没了你。"
+    },
+    {
+      "id": "explore_map",
+      "label": "按图索骥",
+      "verb": "explore",
+      "requirements": {
+        "card:old_map": 1
+      },
+      "warmup": 1,
+      "effects": [
+        {
+          "op": "consume_main"
+        },
+        {
+          "op": "draw",
+          "deck": "expedition",
+          "times": 2
+        }
+      ],
+      "start_text": "地图指向城外的废墟。",
+      "end_text": "你翻遍了废墟，地图也烂了。"
+    },
+    {
+      "id": "explore_blind",
+      "label": "盲探",
+      "verb": "explore",
+      "requirements": {},
+      "warmup": 1,
+      "effects": [
+        {
+          "op": "draw",
+          "deck": "expedition",
+          "times": 1
+        }
+      ],
+      "start_text": "没有目标，随便走走。",
+      "end_text": "你带回了点东西。"
+    },
+    {
+      "id": "ritual_ascend",
+      "label": "洞明之仪",
+      "verb": "ritual",
+      "requirements": {
+        "card:grimoire": 1,
+        "card:insight": 2
+      },
+      "warmup": 3,
+      "slots": [
+        {
+          "id": "offering",
+          "label": "祭品",
+          "required": {
+            "worth": 1
+          },
+          "capacity": 2,
+          "forbidden": {}
+        },
+        {
+          "id": "pure",
+          "label": "纯洁之供",
+          "required": {
+            "health": 1
+          },
+          "forbidden": {
+            "taint": 1
+          },
+          "essential": true
+        }
+      ],
+      "effects": [
+        {
+          "op": "consume_slot",
+          "slot": "offering"
+        },
+        {
+          "op": "consume_slot",
+          "slot": "pure"
+        },
+        {
+          "op": "ending",
+          "id": "illumination"
+        }
+      ],
+      "alternatives": [
+        {
+          "recipe": "ritual_backfire",
+          "chance": 20
+        }
+      ],
+      "start_text": "三个回合的诵念。纯洁之供必须毫无蚀痕。"
+    },
+    {
+      "id": "ritual_backfire",
+      "label": "仪式失控",
+      "verb": "ritual",
+      "craftable": false,
+      "requirements": {},
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "spawn",
+          "card": "dread",
+          "count": 2
+        }
+      ],
+      "end_text": "烛火倒卷。有什么东西注意到了你。"
+    },
+    {
+      "id": "ritual_incense",
+      "label": "焚香",
+      "verb": "ritual",
+      "requirements": {
+        "card:grimoire": 1,
+        "passion": 1
+      },
+      "warmup": 1,
+      "slots": [
+        {
+          "id": "censer",
+          "label": "香炉",
+          "required": {
+            "card:glimmer": 1
+          },
+          "essential": true,
+          "forbidden": {}
+        }
+      ],
+      "effects": [
+        {
+          "op": "transform",
+          "slot": "censer",
+          "card": "ecstasy"
+        }
+      ],
+      "start_text": "把灵感投进去烧。",
+      "end_text": "火光里，灵感燃成了狂喜。"
+    },
+    {
+      "id": "market_sell",
+      "label": "出手旧货",
+      "verb": "market",
+      "requirements": {
+        "worth": 1
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "consume_aspect",
+          "aspect": "worth",
+          "count": 2
+        },
+        {
+          "op": "spawn",
+          "card": "funds",
+          "count": 3
+        }
+      ],
+      "start_text": "识货的人眯起眼睛。",
+      "end_text": "成交。"
+    },
+    {
+      "id": "market_buy",
+      "label": "采买药草",
+      "verb": "market",
+      "requirements": {
+        "funds": 2
+      },
+      "warmup": 0,
+      "effects": [
+        {
+          "op": "consume_aspect",
+          "aspect": "funds",
+          "count": 2
+        },
+        {
+          "op": "spawn",
+          "card": "herb",
+          "count": 1
+        }
+      ],
+      "start_text": "摊主神秘兮兮地掀开布帘。",
+      "end_text": "新鲜药草到手。"
+    }
+  ],
+  "endings": [
+    {
+      "id": "madness",
+      "label": "入迷",
+      "text": "你的理智被漫宿吞没。桌面上只剩下闪烁的烛火。",
+      "cg": "cg/madness.png",
+      "legacy_spawn": {
+        "dread": 1
+      }
+    },
+    {
+      "id": "illumination",
+      "label": "洞明",
+      "text": "光穿过了你。你不再是求道者，你是灯。",
+      "cg": "cg/illumination.png",
+      "legacy_spawn": {
+        "insight": 1
+      }
+    }
+  ]
+}
